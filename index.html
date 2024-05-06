@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>html w/ javascript</title>
+    </head>
+    <body>
+        <h1 id="my_h1">This is a header!</h1>
+
+        <script>
+            "use strict";
+            document.getElementById("my_h1").innerHTML = "NEW HEADER!";
+            let div_string = '<div id="my_div" '
+                + 'style="background-color:dodgerblue;'
+                + 'color:white; border:1px solid black;'
+                + 'padding:20px; text-align:center; width:300px;'
+                + 'font-size:18px;">DIV MESSAGE!</div>';
+            document.write(div_string);
+            console.log(div_string);
+        </script>
+
+        <button style="margin:20px; font-size:20px;" id="my_button">Click Me!</button>
+
+        <script>
+            "use strict";
+            const my_button = document.getElementById("my_button");
+            function changeDiv()
+            {
+                my_div.innerHTML = "i love dcs :)"
+            }
+            function recolorDiv(enter = true)
+            {
+                if (enter) {
+                    my_div.style.backgroundColor = "pink";
+                } else {
+                    my_div.style.backgroundColor = "dodgerblue";
+                }
+            }
+            // in JS, functions are 1st-class-objects
+            // i.e., we can pass a function as an argument
+            my_button.addEventListener('click', changeDiv);
+            my_button.addEventListener('mouseenter', recolorDiv);
+            // my_button.addEventListener('mouseleave', function() { recolorDiv(false); });
+            my_button.addEventListener('mouseleave', () => recolorDiv(false));
+        </script>
+
+        <script>
+            function trad(a) { return a + 100; }
+            console.log(trad(5));
+
+            const lam = (a) => a + 100; // lambda AKA arrow function
+            console.log(lam(10));
+        </script>
+
+        <script>
+            //alert("Hello!");
+            /* 
+                var -- defines variable, allows variables to be hoisted
+                let -- defines variable, only locally within most encompassing block of {}
+                const -- defines a constant
+            */
+            "use strict";
+            let my_variable;
+            my_variable = 17;
+            console.log(my_variable);
+            console.log("my_variable = ${my_variable}");
+            console.log(`my_variable = ${my_variable}`); // correct method for string substitution in JS
+        </script>
+
+        <script>
+            "use strict";
+            function myfunc(num) {
+                if (true) {
+                    var retval = num*10; // retval is "hoisted" outside
+                    //let retval = num*10;
+                }
+                //return num * 10;
+                return retval;
+            }
+            let mynum = 5;
+            let newnum = myfunc(mynum);
+            console.log(mynum);
+            console.log(`result of myfunc(5) = ${newnum}`);
+            console.log(`result of myfunc(${mynum}) = ${newnum}`);
+        </script>
+    </body>
+</html>
